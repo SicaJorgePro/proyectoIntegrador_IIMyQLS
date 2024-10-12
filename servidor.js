@@ -44,13 +44,21 @@ app.use(async (req, res, next) => {
 });
 
 //  ruter 
-app.use(mainrouters);
+app.use("/",mainrouters);
 app.use("/peliculas", routersCatalogPeli);
 
 
 // ? cuando no existe la ruta
 app.use((req, res) => {
   res.status(404).send("PAGINA NO ENCONTRADA!!");
+});
+
+process.on("SIGINT", async () => {
+  console.log("Cerrando el servidor y la conexión a la base de datos...");
+  await sequelize.close();
+    console.log("Servidor cerrado.");
+    process.exit(0);
+  
 });
 
 // Iniciar el servidor

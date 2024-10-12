@@ -57,7 +57,11 @@ const catalogoPelicula = async (req, res) => {
 const buscarID = async (req, res) => {
   try {
     const { idpelicula } = req.params;
-
+    if (!idpelicula) {
+      return res
+        .status(400)
+        .json({ mensaje: "NO IDENTIFICO EL CODIGO DE PELICULA A MOSTRAR" });
+    }
     const catalogoPeli = await buscarPeliculaPorID(idpelicula);
   
     if (catalogoPeli.length !== 0) {
@@ -103,9 +107,11 @@ const buscarID = async (req, res) => {
 const buscarCateg = async (req, res) => {
   try {
     const { idcategoria } = req.params;
-
+    if (!idcategoria) {
+                       return res.status(400).json({ mensaje: "NO EDENTIFICO LA CATEGORIA A MOSTRAR." });
+     }
     const catalogoPeli = await buscarPeliculaPorCAT(idcategoria);
-
+     
     if (catalogoPeli.length !== 0) {
               const result = catalogoPeli.map((pelicula) => {
                 const actorRepart = pelicula.actPelicula
@@ -148,6 +154,14 @@ const buscarCateg = async (req, res) => {
 const buscarTitulo = async (req, res) => {
   try {
     const { query } = req.params;
+    if (!query) {
+      return res
+        .status(400)
+        .json({
+          mensaje:
+            "NO IDENTIFICO QUE TITULO O LETRA, DESEA PARA BUSCAR LA PELICULA",
+        });
+    }
   
     const catalogoPeli = await buscarPeliculaPorTIT(query);     
   
