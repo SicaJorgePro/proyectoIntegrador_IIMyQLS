@@ -1,0 +1,34 @@
+[
+  {
+    "id_pelicula": 36,
+    "poster": "/posters/img.jpg",
+    "titulo": "FROM",
+    "id_categ_peli": 2,
+    "nombre_genero": ["Ciencia Ficción","Terror", "Suspenso"],
+    "temporada": "N/A",
+    "resumen": "La película está ambientada en terror de distintas epocas",
+    "trailer": "https://www.youtube.com/embed/FRDFRDFER",
+    "nombre_actores": ["Bill Skarsgård","Cailee Spaeny", "Benjamin Sokolow"]
+  },
+  {
+    "id_pelicula": 37,
+    "poster": "/posters/img.jpg",
+    "titulo": "TINIEBLA",
+    "id_categ_peli": 1,
+    "nombre_genero": ["Ciencia Ficción","Terror","Acción"],
+    "temporada": "N/A",
+    "resumen": "La película está ambientada en terror",
+    "trailer": "https://www.youtube.com/embed/ghyghy",
+    "nombre_actores": [
+      "Bill Skarsgård",
+      "Cailee Spaeny",
+      "Benjamin Sokolow",
+      "Bill Skarsgård"
+    ]
+  }
+
+
+
+]
+
+
