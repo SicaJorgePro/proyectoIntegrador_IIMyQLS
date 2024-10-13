@@ -60,7 +60,9 @@ const buscarID = async (req, res) => {
     if (!idpelicula) {
       return res
         .status(400)
-        .json({ mensaje: "NO IDENTIFICO EL CODIGO DE PELICULA A MOSTRAR" });
+        .json({
+          mensaje: "Se requiere un identificador de película en la Url",
+        });
     }
     const catalogoPeli = await buscarPeliculaPorID(idpelicula);
   
@@ -108,7 +110,12 @@ const buscarCateg = async (req, res) => {
   try {
     const { idcategoria } = req.params;
     if (!idcategoria) {
-                       return res.status(400).json({ mensaje: "NO EDENTIFICO LA CATEGORIA A MOSTRAR." });
+                       return res
+                         .status(400)
+                         .json({
+                           mensaje:
+                             "Se requiere un identificador de código de categoría en la Url.",
+                         });
      }
     const catalogoPeli = await buscarPeliculaPorCAT(idcategoria);
      
@@ -155,12 +162,9 @@ const buscarTitulo = async (req, res) => {
   try {
     const { query } = req.params;
     if (!query) {
-      return res
-        .status(400)
-        .json({
-          mensaje:
-            "NO IDENTIFICO QUE TITULO O LETRA, DESEA PARA BUSCAR LA PELICULA",
-        });
+      return res.status(400).json({
+        mensaje: "Se requiere un identificador de título(palabra o letra) en la Url",
+      });
     }
   
     const catalogoPeli = await buscarPeliculaPorTIT(query);     
@@ -223,14 +227,14 @@ const crearregistro = async (req, res) => {
               if (error) return res.status(400).json(error);
 
   try {
-    // Verificar si la película ya existe
+    // Verificar película 
     const peliculaExistente = await catalogo.findOne({
       where: { id_pelicula },
     });
     if (peliculaExistente) {
       return res.status(409).json({ message: "La película ya existe." });
     }
-    // Verificar si la categoría existe
+    // Verificar categoría 
     const categoriaExistente = await categpeli.findOne({
       where: { id_categoria: id_categ_peli },
     });
@@ -249,7 +253,7 @@ const crearregistro = async (req, res) => {
       id_categ_peli, 
     });
 
-    // Asociar actores al nuevo contenido
+    // actores al nuevo contenido
     for (const nombre_actor of nombre_actores) {
       // Buscar o crear el actor
       const [actorCreado] = await actorpeli.findOrCreate({
@@ -257,13 +261,13 @@ const crearregistro = async (req, res) => {
         defaults: { nombre_actores: nombre_actor }, // Si no existe, crearlo
       });
 
-      // Asociar el actor con la película en la tabla intermedia
+      // tabla intermedia
       await actoresReparto.create({
         id_pelicula: contenidoCreado.id_pelicula, // FK hacia catalogo
         id_actores: actorCreado.id_actores, // FK hacia actorpeli
       });
     }
-    // Procesar y asociar géneros
+    // géneros
     for (const nom_genero of nombre_genero) {
       const [generoCreado] = await generogeneral.findOrCreate({
         where: { nombre_genero: nom_genero },
@@ -317,7 +321,7 @@ const modificarRegistro = async (req, res) => {
 
   try {
     
-    // Verificar si la película existe
+    // Verificar pelicula
     const peliculaExistente = await catalogo.findOne({
       where: { id_pelicula },
     });
@@ -325,7 +329,7 @@ const modificarRegistro = async (req, res) => {
       return res.status(404).json({ message: "La película no existe." });
     }
 
-    // Verificar si la categoría existe
+    // Verificar categoría 
     const categoriaExistente = await categpeli.findOne({
       where: { id_categoria: id_categ_peli },
     });
@@ -402,7 +406,7 @@ const eliminarRegistros = async (req, res) => {
   const { id_pelicula } = req.params; 
 
   try {
-    // Verificar si la película existe
+   
     const peliculaExistente = await catalogo.findOne({
       where: { id_pelicula },
     });

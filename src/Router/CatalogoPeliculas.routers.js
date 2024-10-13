@@ -11,9 +11,8 @@ router.get("/catalogo/categoria/:idcategoria?",controlador_catalogo.buscarCateg)
 router.get("/catalogo/titulo/:query?", controlador_catalogo.buscarTitulo);
 router.get("/catalogo/:idpelicula?", controlador_catalogo.buscarID);
 
-
-  
-// mostar catalogos de pelicuals en vistas 
+ 
+// mostrar catálogos de películas en vistas 
 //  lista completa
 router.get("/catalogo/lista/view", controlador_catalView.vistaCatalogo);
 // lista por genero
