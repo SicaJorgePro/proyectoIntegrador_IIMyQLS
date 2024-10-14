@@ -8,6 +8,10 @@ const moduloViewGenero = sequelize.define(
       type: DataTypes.INTEGER,
       primaryKey: true,
     },
+    poster: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     titulo: {
       type: DataTypes.STRING,
       allowNull: true,
@@ -20,10 +24,21 @@ const moduloViewGenero = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    nombre_genero: {
+    generos: {
       type: DataTypes.STRING,
       allowNull: false,
-      field: "nombre_genero",
+    },
+    resumen: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    trailer: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    actores: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
   },
   {

@@ -97,7 +97,7 @@ Se utilizaron <u>Node.js</u> para la creación de este proyecto y se incorporan 
 
 > Para ejecutar el servidor poner
 
-**`node run dev`**
+**`npm run dev`**
 
 > [!IMPORTANT]
 ⚠ Advertencia: Antes de ejecutar el proyecto recuerde que necesita la base de datos ya creada y con registros  si es posible. en el punto **CREACION Y RELACION DE BASE DE DATOS** se nombran los archivos que necesita para la creación. Donde se utilizarán en este Proyecto
@@ -137,13 +137,17 @@ Estas peticiones se realizarán sobre la tabla CONTENIDO de la base de dato trai
 ## Utilización de Tablas, por vistas
 
 > [!NOTE]
-Crear vistas, implica definir una consulta que combine los datos de ambas tablas(ya sea 2 0 más) y guardarla como una vista.Una vez creada, puedes consultar la vista como si fuera una tabla. **Las siguientes rutas se realizan sobre la tablas vistas**  
+Crear vistas, implica definir una consulta que combine los datos de ambas tablas(ya sea 2 0 más) y guardarla como una vista.Una vez creada, puedes consultar la vista como si fuera una tabla.   
 
-:computer: http://localhost:3000/peliculas/catalogo/lista/view (esta mostrando los datos predefinidos y organizados de una o más tablas, sin necesidad de especificar las relaciones cada vez, facilitando el acceso a información combinada.). 
+> Se utiliza la vista **contenido_view**: que fue creada por una consulta no muy compleja pero con relaciones.
+
+:computer: http://localhost:3000/peliculas/catalogo/lista/view (la Vista con una consulta simple.Esta mostrando los datos predefinidos y organizados de una o más tablas nombre de la tabla **contenido_view**, sin necesidad de especificar las relaciones cada vez, facilitando el acceso a información combinada, y agregando información adicional al final del archivo json como nombre de base - total de registros -etc). 
 
 > http://localhost:3000/peliculas/catalogo/lista
 
-:computer: http://localhost:3000/peliculas/catalogo/lista/view/:idpeli (consulta que recupera datos específicos de una vista, utilizando el **:idpeli** para filtrar resultados, lo que permite acceder fácilmente a información combinada y organizada de dicha vista. La informacion que presentará será con respecto a la relación de la tabla, en este caso por **genero**, es una relación de mucho a mucho. Para poder visualizar un información acorde tendria realizar algún proceso. Para la próxima... )
+> Se utiliza la vista : **contenido_generos_view** que fue creada por una consulta con varias tablas **contenido**(la principal) con las tablas **categoria** , **genero** y **actores** mucho más compeja y completa.
+
+:computer: http://localhost:3000/peliculas/catalogo/lista/view/:idpeli (consulta está diseñada para obtener información combinada y organizada sobre las películas, utilizando el **:idpeli** para filtrar resultados, lo que permite acceder fácilmente a la información combinada y organizada de dicha vista.) 
 
 > http://localhost:3000/peliculas/catalogo/lista/view/6
 
@@ -152,10 +156,10 @@ Crear vistas, implica definir una consulta que combine los datos de ambas tablas
 
 #### ESTAS PETICIONES SE TRABAJAN con THUNDER CLIENTE O POSMAN
 
-> IMPORTANTE!!!!
-* El campo principal de todas las tablas es idPelicula, este campo es un campo de ingreso, no lo considere automático.
-* Las relaciones que tiene las tablas con configuraciones de opción **cascada**. esto quiere decir que Eliminación del Registro Principal se borrarán también toda la información relacionada en otras tablas.
-* En la carpeta **doc\Endpoints** , se encuentra las distintas peticiones, imagenes de distintas operaciones. 
+> [!IMPORTANT]
+ ✒ El campo principal de todas las tablas es idPelicula, este campo es un campo de ingreso, no lo considere automático.
+ ✒ Las relaciones que tiene las tablas con configuraciones de opción **cascada**. esto quiere decir que Eliminación del Registro Principal se borrarán también toda la información relacionada en otras tablas.
+ ✒ En la carpeta **doc\Endpoints** , se  encuentra las distintas peticiones, imagenes de distintas operaciones. 
 
 
 **POST:**

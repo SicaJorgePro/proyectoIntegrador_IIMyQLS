@@ -28,7 +28,7 @@ const vistaCatalogo = async (req, res) => {
     // sequelize.close();
   }
 };
-// vista de peliculas mostrando su categoria
+// vista de peliculas mostrando informacion de diferentes tablas 
 const vistaCatalogoGenero = async (req, res) => {
   try {
     const { idpeli } = req.params;
@@ -38,15 +38,22 @@ const vistaCatalogoGenero = async (req, res) => {
     const registro = catalogoPeli.map((pelicula) => { 
           
       return {
-       Codigo_Pelicula: pelicula.id_pelicula,
-       Titulo: pelicula.titulo,
-       Categoria: pelicula.nombre_categoria,
-       Temporada: pelicula.temporada,
-       Genero: pelicula.nombre_genero,   
-       }
+        Codigo_Pelicula: pelicula.id_pelicula,
+        Poster: pelicula.poster,
+        Titulo: pelicula.titulo,
+        Categoria: pelicula.nombre_categoria,
+        Temporada: pelicula.temporada,
+        Genero: pelicula.generos,
+        Resumen: pelicula.resumen,
+        Trailer: pelicula.trailer,
+        Actores: pelicula.actores,
+      };
     })
     catalogoPeli.length !== 0
-      ? res.status(200).json(registro)
+      ? res.status(200).json({
+          mensaje: "!!! PELICULA SOLICITADA !!!",
+          catalogo: registro,
+        })
       : res.status(404).json({ ERROR: "NO HAY CATALOGOS DE PELICULAS" });
   } catch (error) {
     res.status(500).json({

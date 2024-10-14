@@ -18,6 +18,7 @@ const catalogoPelicula = async (req, res) => {
   try {
 
      const allcatalogoPeli = await obtenerCatalogoPeli();
+    const cantidadRegistro = allcatalogoPeli.length; 
     
     const result = allcatalogoPeli.map(pelicula => {
        const actorRepart = pelicula.actPelicula
@@ -42,6 +43,7 @@ const catalogoPelicula = async (req, res) => {
     })
     res.status(200).json({
       mensaje: "!!! CATALOGO DE PELICULAS !!!",
+      Cantidad_Registro: cantidadRegistro,
       catalogo: result,
     });
   } catch (error) {
