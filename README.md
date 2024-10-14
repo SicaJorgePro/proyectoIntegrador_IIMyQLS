@@ -159,7 +159,7 @@ Crear vistas, implica definir una consulta que combine los datos de ambas tablas
 > [!IMPORTANT]
  ✒ El campo principal de todas las tablas es idPelicula, este campo es un campo de ingreso, no lo considere automático.
  ✒ Las relaciones que tiene las tablas con configuraciones de opción **cascada**. esto quiere decir que Eliminación del Registro Principal se borrarán también toda la información relacionada en otras tablas.
- ✒ En la carpeta **doc\Endpoints** , se  encuentra las distintas peticiones, imagenes de distintas operaciones. 
+  ✒ En la carpeta **doc\Endpoints** , se  encuentra las distintas peticiones, imagenes de distintas operaciones. 
 
 
 **POST:**
